@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/popover";
 import { Member, MemberRole } from "@/app/api/v1/data";
 import { useAuthContext } from "@/components/auth-context";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -78,8 +79,8 @@ function UserNavigation({
                   {user.role === MemberRole.Admin
                     ? user.role
                     : user.role == MemberRole.Assistant
-                    ? user.team + " " + user.role
-                    : user.team}
+                      ? user.team + " " + user.role
+                      : user.team}
                   )
                 </Button>
               ))}
@@ -109,11 +110,14 @@ export function LayoutComponent({ children }: LayoutProps) {
             </>
           ) : null}
         </nav>
-        <UserNavigation
-          availableUsers={users}
-          currentUser={currentUser}
-          onChangeUser={setCurrentUser}
-        />
+        <div className="flex flex-col items-center space-y-4">
+          <ThemeToggle />
+          <UserNavigation
+            availableUsers={users}
+            currentUser={currentUser}
+            onChangeUser={setCurrentUser}
+          />
+        </div>
       </aside>
       <div className="flex flex-1 flex-col overflow-hidden">
         <header className="flex h-16 items-center justify-between border-b px-4 md:px-6">
