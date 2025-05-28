@@ -51,7 +51,10 @@ export const POST = async (req: NextRequest) => {
 
   response.headers.set("Access-Control-Allow-Origin", "*");
   response.headers.set("Access-Control-Allow-Methods", "POST, OPTIONS");
-  response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  response.headers.set(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, x-copilotkit-runtime-client-gql-version"
+  );
 
   return response;
 };
@@ -63,7 +66,7 @@ export const OPTIONS = async () => {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization, x-copilotkit-runtime-client-gql-version",
     },
   });
 };
