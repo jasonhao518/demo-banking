@@ -44,9 +44,11 @@ export const POST = async (req: NextRequest) => {
     endpoint: "/api/copilotkit",
   });
 
-  const response = await handleRequest(req);
+  let response = await handleRequest(req);
 
-  // Add CORS headers
+  // Clone response if necessary
+  response = new Response(response.body, response);
+
   response.headers.set("Access-Control-Allow-Origin", "*");
   response.headers.set("Access-Control-Allow-Methods", "POST, OPTIONS");
   response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
